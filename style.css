@@ -1,0 +1,114 @@
+@font-face {
+    font-family: "honey";
+    src: url("honey_4/honey.otf");
+    src: url("honey_4/Honey.ttf");
+    }
+
+body{
+    background-color: #156B7D;
+}
+
+p{
+    margin:0.5em;
+}
+
+#score {
+    font-family: Copperplate;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 0;
+}
+
+.card{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 25%;
+    margin-right: 25%; 
+}
+
+#rock{
+    height : 100px;
+    width: 100px;
+    background: no-repeat;
+    background-position: center;
+    background-image: url(icon/rock-2.svg);
+    background-size: 60px auto;
+    background-color: lightgray;
+    border: solid black 5px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#paper{
+    height : 100px;
+    width: 100px;
+    background: no-repeat;
+    background-position: center;
+    background-image: url(icon/document.svg);
+    background-size: 60px auto;
+    background-color: lightgray;
+    border: solid black 5px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#scissors{
+    height : 100px;
+    width: 100px;
+    background: no-repeat;
+    background-position: center;
+    background-image: url(icon/scissors.svg);
+    background-size: 60px auto;
+    background-color: lightgray;
+    border: solid black 5px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#computerCard{
+    display: none;
+    height : 100px;
+    width: 100px;
+    background: no-repeat;
+    background-position: center;
+    background-size: 60px auto;
+    background-color: lightgray;
+    border: solid red 5px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rock:hover, #paper:hover, #scissors:hover{
+    transform: scale(1.1);
+    background-color: wheat;
+}
+
+#playRound{
+    font-size: 50px;
+    height: 100px;
+    width: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+    bottom: 0;
+    background-color: lightgray;
+    border: solid black 5px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#playRound:hover{
+    transform: scale(1.1);
+    background-color: wheat;
+}

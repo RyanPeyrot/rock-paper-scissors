@@ -140,3 +140,173 @@ function showScore(computerScore, playerScore){
 }
 
 -----------------------------------------------------------------------------------------------*/
+
+/*----------------------------- Web Application -----------------------------------------------*/
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const computerCard = document.getElementById("computerCard");
+const playButton = document.getElementById("playRound");
+const resultText = document.getElementById("result");
+const scoreText = document.getElementById("scoreText");
+let computerScore = 0;
+let playerScore = 0;
+
+let playerSelection = null;
+let computerSelection = null;
+
+function isOver(){
+    if (computerScore >= 5 || playerScore >= 5 )
+    {
+        
+    }
+    return;
+}
+
+function computerPlay(){    
+    switch(Math.floor(Math.random() * 3) +1)
+    {
+        case 1:
+            return "rock";
+            break;
+        
+        case 2:
+            return "paper";
+            break;
+        
+        case 3:
+            computerCard.style.display = "";
+            computerCard.style.backgroundImage = "url('icon/scissors.svg')";
+            return "scissors";
+            break;
+
+        default:
+            console.log("Computer dont know what to play");
+            return computerPlay();
+    }
+}
+
+function restart(){
+    if(window.confirm("Restart a game ?")) game()
+}
+
+function playRound(event){
+    let result = null;
+
+    computerSelection = computerPlay();
+
+    switch(playerSelection){
+        case "rock":
+            switch(computerSelection){
+                case "rock":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/rock-2.svg')";
+                    result = "tie";
+                    break;
+
+                case "paper":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/document.svg')";
+                    result = "computer";
+                    break;
+            
+                case "scissors":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/scissors.svg')";
+                    result = "player";
+                    break;
+            }
+            break;
+        
+        case "paper":
+            switch(computerSelection){
+                case "rock":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/rock-2.svg')";
+                    result = "player";
+                    break;
+
+                case "paper":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/document.svg')";
+                    result = "tie"
+                    break;
+            
+                case "scissors":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/scissors.svg')";
+                    result = "computer";
+                    break;
+            }
+            break;
+
+        case "scissors":
+            switch(computerSelection){
+                case "rock":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/rock-2.svg')";
+                    result = "computer";
+                    break;
+
+                case "paper":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/document.svg')";
+                    result = "player";
+                    break;
+            
+                case "scissors":
+                    computerCard.style.display = "block";
+                    computerCard.style.backgroundImage = "url('icon/scissors.svg')";
+                    result = "tie"
+                    break;
+            }
+            break;
+    }
+    
+    switch(result){
+        case "tie":
+            resultText.style.color ="white";
+            resultText.innerText = "it's a Tie !"
+            break;
+        
+        case "computer":
+            resultText.style.color ="red";
+            resultText.innerText = "Computer Win !"
+            computerScore += 1;
+            break;
+
+        case "player":
+            resultText.style.color ="blue";
+            resultText.innerText = "Player Win !"
+            playerScore += 1;
+            break;
+    }
+
+    scoreText.innerText = `${playerScore} - ${computerScore}`;
+
+}
+
+rock.addEventListener('click',function(event){
+    rock.style.borderColor = "blue";
+    paper.style.borderColor= "black";
+    scissors.style.borderColor= "black";
+    playerSelection = "rock";
+});
+
+paper.addEventListener('click',function(event){
+    paper.style.borderColor = "blue";
+    rock.style.borderColor= "black";
+    scissors.style.borderColor= "black";
+    playerSelection = "paper";
+});
+
+scissors.addEventListener('click',function(event){
+    scissors.style.borderColor = "blue";
+    paper.style.borderColor= "black";
+    rock.style.borderColor= "black";
+    playerSelection = "scissors";
+});
+
+playButton.addEventListener('click',playRound);
+
+
