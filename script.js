@@ -147,6 +147,7 @@ const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 const computerCard = document.getElementById("computerCard");
 const playButton = document.getElementById("playRound");
+const playAgain = document.getElementById("playAgain");
 const resultText = document.getElementById("result");
 const scoreText = document.getElementById("scoreText");
 let computerScore = 0;
@@ -155,13 +156,6 @@ let playerScore = 0;
 let playerSelection = null;
 let computerSelection = null;
 
-function isOver(){
-    if (computerScore >= 5 || playerScore >= 5 )
-    {
-        
-    }
-    return;
-}
 
 function computerPlay(){    
     switch(Math.floor(Math.random() * 3) +1)
@@ -175,8 +169,6 @@ function computerPlay(){
             break;
         
         case 3:
-            computerCard.style.display = "";
-            computerCard.style.backgroundImage = "url('icon/scissors.svg')";
             return "scissors";
             break;
 
@@ -184,10 +176,6 @@ function computerPlay(){
             console.log("Computer dont know what to play");
             return computerPlay();
     }
-}
-
-function restart(){
-    if(window.confirm("Restart a game ?")) game()
 }
 
 function playRound(event){
@@ -283,7 +271,27 @@ function playRound(event){
     }
 
     scoreText.innerText = `${playerScore} - ${computerScore}`;
+    if(playerScore >= 5 || computerScore >= 5)  endGame();
+}
 
+function endGame(){
+    document.querySelector(".card").style.display ="none";
+    document.querySelector("#computer").style.display ="none";
+    resultText.style.display = "none";
+
+    playButton.style.display = "none";
+    playAgain.style.display = "block";
+
+    scoreText.style.fontSize = "2em"
+
+
+    if ( computerScore >= 5 ){
+        document.querySelector("h1").innerText = "Computer Win the game !";
+        document.querySelector("h1").style.color ="red";
+    }else if ( playerScore >= 5){
+        document.querySelector("h1").innerText = "Player Win the game !";
+        document.querySelector("h1").style.color ="blue";
+    }
 }
 
 rock.addEventListener('click',function(event){
@@ -308,5 +316,8 @@ scissors.addEventListener('click',function(event){
 });
 
 playButton.addEventListener('click',playRound);
+playAgain.addEventListener('click',function(e){
+    location.reload();
+});
 
 
